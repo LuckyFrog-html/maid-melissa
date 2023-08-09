@@ -2,6 +2,9 @@
 
 ## Getting Started
 
+#### Note
+To see hebrew version of site go to /he
+
 ### Requirements
 
 To run this app you need to install:
@@ -47,4 +50,8 @@ Then you need to run client:
 
 ## Result
 
+<<<<<<< HEAD
 You can see result in http://localhost:3000
+=======
+You can see result in http://localhost:3000
+>>>>>>> 3069e23ed3dbced876472a256095364cf9b3d340
