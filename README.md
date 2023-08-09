@@ -2,6 +2,9 @@
 
 ## Getting Started
 
+#### Note
+To see hebrew version of site go to /he
+
 ### Requirements
 
 To run this app you need to install:
