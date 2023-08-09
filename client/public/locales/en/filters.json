@@ -1,0 +1,19 @@
+{
+    "allergy_title": "allergy",
+    "allergy_1": "None",
+    "allergy_2": "Cats",
+    "allergy_3": "Dogs",
+    "frequency_title": "frequency",
+    "frequency_1": "One-time",
+    "frequency_2": "Twice a week",
+    "frequency_3": "Every week",
+    "cleaning_title": "cleaning",
+    "address_header": "Please enter your address",
+    "mon": "Mon",
+    "tue": "Tue",
+    "wed": "Wed",
+    "thu": "Thu",
+    "fri": "Fri",
+    "sat": "Sat",
+    "sun": "Sun"
+}

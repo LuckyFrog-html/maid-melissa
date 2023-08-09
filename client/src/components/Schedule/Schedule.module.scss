@@ -1,0 +1,24 @@
+.container {
+    padding-top: 100px;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+
+    .header {
+        text-align: center;
+    }
+
+    .button {
+        margin: 80px auto 10px;
+    }
+
+    @media screen and (max-width: 1024px) {
+        margin-top: 30px;
+    }
+
+    @media screen and (max-width: 768px) {
+        .button {
+            margin-top: 40px;
+        }
+    }
+}

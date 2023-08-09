@@ -1,0 +1,39 @@
+.container {    width: 100%;
+    .item {
+        .head {
+            background: white;
+            padding: 10px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: 0.3s;
+
+            &:hover {
+                background: color-mix(in srgb, var(--primary) 20%, white 100%);
+            }
+
+            .text {
+                text-align: center;
+            }
+        }
+
+        .panel {
+            margin: 15px 50px;
+            &[aria-hidden="true"] {
+                opacity: 0;
+            }
+            transition: 0.3s;
+            opacity: 1;
+            p {
+                text-align: center;
+            }
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .item {
+            .panel {
+                margin: 10px 15px;
+            }
+        }
+    }
+}

@@ -1,0 +1,44 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id            String   @id @default(uuid())
+    isVerified    Boolean  @default(false)
+    email         String   @unique
+    phone         String   @unique
+    date_of_birth DateTime
+    firstname     String
+    lastname      String
+    password      String?
+    jwt_refresh   String?
+    verification  String?
+    orders        Order[]
+}
+
+model Hour {
+    id         String  @id @default(uuid())
+    day        Int
+    start_time String
+    end_time   String
+    ordered    Boolean
+    order      Order?
+}
+
+model Order {
+    id        String @id @default(uuid())
+    user      User   @relation(fields: [userId], references: [id])
+    userId    String
+    hour      Hour   @relation(fields: [hourId], references: [id])
+    hourId    String @unique
+    dateStr   String
+    allergy   String
+    frequency String
+    cleaning  String
+    address   String
+}

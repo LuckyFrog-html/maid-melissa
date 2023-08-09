@@ -1,0 +1,120 @@
+:global(:root[lang="he"]) {
+    :local .container {
+        .benefits {
+            margin: 50px 60px 0 0;
+        }
+    }
+}
+
+.container {
+    padding: 250px 0 150px;
+    display: grid;
+    place-items: center;
+
+    .content {
+        margin-top: 50px;
+        display: grid;
+        grid-template-columns: 520px 1fr;
+    }
+
+    .img {
+        background: var(--red);
+        border-radius: var(--border-radius);
+        width: 520px;
+        overflow: hidden;
+
+        img {
+            margin: 40px 0 -5px;
+            width: 100%;
+        }
+    }
+
+    .benefits {
+        margin: 20px 0 0 60px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+
+        .benefit {
+            .title {
+                margin: 10px 0 15px 5px;
+            }
+        }
+    }
+
+    @media screen and (max-width: 1440px) {
+        padding: 100px 0 50px;
+
+        .content {
+            grid-template-columns: 1fr 2fr;
+        }
+
+        .img {
+            width: 400px;
+            height: 480px;
+            margin: auto;
+
+            img {
+                height: 100%;
+            }
+        }
+
+        .benefits {
+            margin: 10px 0 0 30px;
+        }
+    }
+
+    @media screen and (max-width: 1024px) {
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .benefits {
+            margin: 30px 0 0;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        padding: 60px 0 40px;
+
+        .mobileHeader {
+            margin-top: 30px;
+        }
+
+        .imgWrapper {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+
+            .img {
+                width: auto;
+                height: auto;
+
+                img {
+                    margin-top: 30px;
+                }
+            }
+
+            p {
+                margin: 40px 0 0 15px;
+            }
+        }
+
+        .benefits {
+            gap: 15px;
+        }
+    }
+
+    @media screen and (max-width: 560px) {        
+        .imgWrapper {
+            .img {
+                border-radius: 20px;
+            }
+        }
+
+        .benefits {
+            grid-template-columns: 1fr;
+        }
+    }
+}

@@ -1,0 +1,77 @@
+.PhoneInput {
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 25px;
+
+    ::placeholder {
+        color: var(--primary);
+        opacity: 0.5;
+    }
+
+    .wrong {
+        position: absolute;
+        right: 20px;
+        color: var(--red);
+    }
+
+    .icon {
+        position: absolute;
+        left: 10px;
+        margin: 0 10px;
+    }
+
+    input {
+        padding: 17px 20px 20px;
+        font-family: inherit;
+        color: var(--primary);
+        width: 100%;
+        font-size: 25px;
+        border: none;
+        background: none;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        &[type="number"] {
+            -moz-appearance: textfield;
+            appearance: textfield;
+        }
+
+        &.withIcon {
+            padding-left: 60px;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        input {
+            padding: 8px 12px 12px;
+            font-size: 21px;
+            line-height: 24px;
+
+            &.withIcon {
+                padding-left: 40px;
+            }
+        }
+    }
+
+    @media screen and (max-width: 560px) {
+        input {
+            font-size: 17px;
+            line-height: 21px;
+        }
+    }
+
+    @media screen and (max-width: 375px) {
+        input {
+            font-size: 15px;
+            line-height: 19px;
+        }
+    }
+}

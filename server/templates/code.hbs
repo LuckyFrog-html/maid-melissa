@@ -1,0 +1,29 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="x-apple-disable-message-reformatting" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+            name="format-detection"
+            content="telephone=no, date=no, address=no, email=no"
+        />
+        <meta name="color-scheme" content="light dark" />
+        <meta name="supported-color-schemes" content="light dark" />
+    </head>
+    <body>
+        <style>
+            .container { display: flex; align-items: center; flex-direction: column;
+            border-radius: 12px; background: rgb(228, 235, 255); } .container * {
+            font-family: sans-serif; text-align: center; color: rgb(56, 86, 154) }
+            .container > h2 { font-size: 28px; margin-top: 20px; } .text { font-size:
+            18px; } .code { font-size: 22px; color: rgb(229, 75, 75); font-weight:
+            700; }
+        </style>
+        <div class="container">
+            <h2>Hello {{firstname}} {{lastname}}. Please, verify your email</h2>
+            <p class="text">This is your code:</p>
+            <p class="code">{{code}}</p>
+        </div>
+    </body>
+</html>

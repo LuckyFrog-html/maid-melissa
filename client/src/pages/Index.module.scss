@@ -1,0 +1,51 @@
+:global(:root[lang="he"]) {
+    :local .container {
+        .subheader {
+            text-align: left;
+            margin-right: auto;
+            margin-left: 100px;
+
+            @media screen and (max-width: 1440px) {
+                margin-left: 50px;
+            }
+        }
+    }
+}
+
+.container {
+    padding: 120px 65px;
+
+    .header {
+        margin: 0 auto;
+        text-align: center;
+        max-width: 1000px;
+    }
+
+    .subheader {
+        margin-top: 45px;
+        margin-right: 40px;
+        margin-left: 0;
+        text-align: right;
+    }
+
+    @media screen and (max-width: 1440px) {
+        padding: 80px 30px;
+
+        .subheader {
+            margin-top: 25px;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        padding: 10px 30px 50px;
+
+        .subheader {
+            margin-top: 15px;
+            margin-right: 10px;
+        }
+    }
+
+    @media screen and (max-width: 560px) {
+        padding: 10px 15px 50px;
+    }
+}

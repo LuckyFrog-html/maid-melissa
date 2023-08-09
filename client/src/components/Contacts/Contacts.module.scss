@@ -1,0 +1,28 @@
+.container {    display: grid;
+    place-items: center;
+
+    .subheader {
+        margin: 40px 0 80px;
+        text-align: center;
+    }
+
+    .smList {
+        display: flex;
+
+        p {
+            margin: 0 20px;
+        }
+    }
+
+    @media screen and (max-width: 560px) {
+        .subheader {
+            margin: 20px 0 30px;
+        }
+        
+        .smList {
+            p {
+                margin: 0 5px;
+            }
+        }
+    }
+}

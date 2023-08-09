@@ -1,0 +1,93 @@
+:global(:root[lang="he"]) {
+    :local .container {
+        .auth {
+            align-items: flex-end;
+        }
+    }
+}
+
+.container {
+    padding: 85px 65px;
+    display: flex;
+    justify-content: space-between;
+
+    .logoText {
+        white-space: break-spaces;
+        max-width: 90px;
+    }
+
+    .nav {
+        display: flex;
+        align-items: flex-start;
+
+        .link {
+            margin: 0 29px;
+        }
+    }
+
+    .auth {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        p {
+            margin-bottom: 10px;
+        }
+    }
+
+    .profile {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+
+        p {
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        span {
+            margin-right: 10px;
+            padding-bottom: 5px;
+            display: grid;
+            place-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            font-size: 30px;
+        }
+    }
+
+    @media screen and (max-width: 1440px) {
+        padding: 50px 30px;
+
+        .nav {
+            .link {
+                margin: 0 15px;
+            }
+        }
+
+        .auth {
+            p {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        padding: 25px 20px 15px;
+    }
+
+    .burger {
+        width: 32px;
+        height: 32px;
+        margin-left: auto;
+        cursor: pointer;
+
+        img {
+            width: 100%;
+        }
+    }
+}

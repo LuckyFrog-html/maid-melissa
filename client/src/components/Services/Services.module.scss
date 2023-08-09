@@ -1,0 +1,97 @@
+.container {    padding-top: 70px;
+    margin-top: 180px;
+    display: grid;
+    place-items: center;
+
+    .services {
+        margin-top: 40px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0 30px;
+
+        .service {
+            padding: 40px 40px 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            background: white;
+            border-radius: 200px;
+            overflow: hidden;
+
+            .title {
+                margin: 35px 0 20px;
+                white-space: nowrap;
+            }
+
+            .text {
+                text-align: center;
+            }
+
+            img {
+                margin-top: -40px;
+                height: 256px;
+            }
+        }
+    }
+
+    .button {
+        margin-top: 50px;
+    }
+
+    @media screen and (max-width: 1440px) {
+        .services {
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+
+            .service {
+                width: 400px;
+
+                .text {
+                    text-align: center;
+                    max-width: 80%;
+                } 
+            }
+        }
+    }
+
+    @media screen and (max-width: 1024px) {
+        .services .service {
+            width: 280px;
+
+            .title {
+                margin: 5px 0 10px;
+            }
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        margin-top: 100px;
+        .services {
+            grid-template-columns: 1fr;
+            gap: 20px;
+
+            .service {
+                padding: 35px 20px;
+                width: 100%;
+                max-width: 320px;
+            }
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        margin-top: 60px;
+
+        .services {
+            .service {
+                border-radius: 70px;
+                padding: 25px 0;
+
+                img {
+                    height: 180px;
+                    width: auto;
+                }
+            }
+        }
+    }
+}

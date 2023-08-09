@@ -1,0 +1,11 @@
+.container {
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+
+    .time {
+        font-weight: 500;
+        width: 60px;
+        margin-right: 10px;
+    }
+}

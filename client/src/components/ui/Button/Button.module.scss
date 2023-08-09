@@ -1,0 +1,87 @@
+.button {    border: none;
+    border-radius: var(--border-radius);
+    padding: 15px 50px;
+    font-size: 30px;
+    line-height: 38px;
+    background: var(--red);
+    color: white;
+    font-family: inherit;
+    box-shadow: 0px 5px 20px 0px
+        color-mix(in srgb, var(--red) 40%, var(--red) 30%);
+    transition: 0.3s;
+    cursor: pointer;
+
+    &.dark {
+        background: var(--primary);
+    }
+
+    &.noShadow {
+        box-shadow: none;
+
+        &:hover {
+            box-shadow: none !important;
+        }
+
+        &.focus {
+            box-shadow: none !important;
+        }
+    }
+
+    &.disabled {
+        cursor: default;
+        opacity: 0.5;
+
+        &:hover,
+        &.focus,
+        &.selected {
+            filter: brightness(1);
+            box-shadow: 0px 5px 20px 0px
+                color-mix(in srgb, var(--red) 40%, var(--red) 30%);
+        }
+    }
+
+    &.selected {
+        background: var(--primary);
+        box-shadow: 0px 5px 20px 0px
+            color-mix(in srgb, var(--primary) 100%, var(--primary) 90%);
+
+        &:hover {
+            box-shadow: 0px 5px 20px 0px
+                color-mix(in srgb, var(--primary) 100%, var(--primary) 90%);
+        }
+    }
+
+    &.focus {
+        box-shadow: 0px 10px 30px 0px
+            color-mix(in srgb, var(--red) 100%, var(--red) 100%);
+
+        &:hover {
+            box-shadow: 0px 10px 30px 0px
+                color-mix(in srgb, var(--red) 100%, var(--red) 100%);
+        }
+    }
+
+    &:hover {
+        filter: brightness(1.1);
+        box-shadow: 0px 5px 20px 0px
+            color-mix(in srgb, var(--red) 100%, var(--red) 90%);
+    }
+
+    @media screen and (max-width: 1440px) {
+        font-size: 25px;
+        line-height: 32px;
+        padding: 12px 20px;
+    }
+
+    @media screen and (max-width: 768px) {
+        font-size: 21px;
+        line-height: 28px;
+        padding: 7px 15px;
+    }
+
+    @media screen and (max-width: 560px) {
+        font-size: 18px;
+        line-height: 23px;
+        padding: 7px 15px;
+    }
+}

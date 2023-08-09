@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    justify-content: center;
+
+    .item {
+        margin: 0 5px;
+    }
+
+    &.grid {
+        @media screen and (max-width: 1024px) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            .item {
+                margin: 10px 15px;
+                .button {
+                    width: 100%;
+                }
+            }
+        }
+
+        @media screen and (max-width: 500px) {
+            grid-template-columns: 1fr;
+
+            .item {
+                margin: 10px auto;
+
+
+                .button {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

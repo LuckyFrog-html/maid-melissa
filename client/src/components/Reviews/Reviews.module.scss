@@ -1,0 +1,38 @@
+.container {
+    margin-top: 100px;
+    padding-top: 100px;
+    display: grid;
+    place-items: center;
+    position: relative;
+    padding-bottom: 400px;
+
+    .subheader {
+        margin-top: 40px;
+    }
+
+    .content {
+        margin-top: 70px;
+        width: 100%;
+        bottom: 0;
+        position: absolute;
+    }
+
+    @media screen and (max-width: 1440px) {
+        margin-top: 50px;
+        padding-bottom: 320px;
+    }
+
+    @media screen and (max-width: 768px) {
+        margin-top: 20px;
+        padding-bottom: 335px;
+
+        .subheader {
+            margin-top: 20px;
+            text-align: center;
+        }
+    }
+
+    @media screen and (max-width: 425px) {
+        padding-bottom: 370px;
+    }
+}

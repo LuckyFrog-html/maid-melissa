@@ -1,0 +1,19 @@
+{
+    "allergy_title": "אַלֶרגִיָה",
+    "allergy_1": "אף אחד",
+    "allergy_2": "חתולים",
+    "allergy_3": "כלבים",
+    "frequency_title": "תדירות",
+    "frequency_1": "פעם אחת",
+    "frequency_2": "פעמיים בשבוע",
+    "frequency_3": "כל שבוע",
+    "cleaning_title": "ניקוי",
+    "address_header": "נא להזין את כתובתך",
+    "mon": "שֶׁלִי",
+    "tue": "יום שלישי",
+    "wed": "היינו עושים",
+    "thu": "לאסוף",
+    "fri": "יום שישי",
+    "sat": "ישב",
+    "sun": "שמש"
+}
