@@ -1,25 +1,29 @@
 import { Hour } from "@/types/models";
 import { $authHost, $host } from "..";
 
-export const getFreeHours = async (): Promise<Hour[] | undefined> => {
+export const getFreeHours = async (): Promise<{
+    hours: Hour[];
+    status: "error" | "success";
+}> => {
     try {
         const { data } = await $host.get<Hour[]>("/hours/free");
 
-        return data;
+        return { status: "success", hours: data };
     } catch (error) {
-        console.log(error);
+        return { status: "error", hours: [] };
     }
 };
 
-export const getUserOrders = async (): Promise<Hour[] | undefined> => {
+export const getUserOrders = async (): Promise<{
+    hours: Hour[];
+    status: "error" | "success";
+}> => {
     try {
-        const { data } = await $authHost.get<{hours: Hour[]}>("/orders/user");
+        const { data } = await $authHost.get<{ hours: Hour[] }>("/orders/user");
 
-        console.log("data is", data);
-
-        return data.hours;
+        return { status: "success", hours: data.hours };
     } catch (error) {
-        console.log(error);
+        return { status: "error", hours: [] };
     }
 };
 
@@ -34,8 +38,8 @@ export const orderHour = async (data: {
 }) => {
     try {
         const res = await $authHost.post("/orders", data);
-        return res.data;
+        return { data: res.data, status: "success" };
     } catch (error) {
-        console.log(error);
+        return { status: "error" };
     }
 };

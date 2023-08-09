@@ -57,7 +57,10 @@ const AuthModal: FC<AuthModalProps> = ({ initState }) => {
             password: store.pass,
         });
         setIsLoading(false);
-        if (res.status !== "success") {
+        if (res.status === "error") {
+            showAlert!(t("unavailable"));
+            return;
+        } else if (res.status === "not exist") {
             showAlert!(t("invalid_login"));
             return;
         }
@@ -74,7 +77,12 @@ const AuthModal: FC<AuthModalProps> = ({ initState }) => {
             case "init":
                 return (
                     <div className={styles.wrapper}>
-                        <p className={classNames("text big wide", styles.title)}>
+                        <p
+                            className={classNames(
+                                "text big wide",
+                                styles.title,
+                            )}
+                        >
                             {t("auth_req_modal_title")}
                         </p>
                         <div className={styles.buttons}>
@@ -194,6 +202,9 @@ const AuthModal: FC<AuthModalProps> = ({ initState }) => {
                                     if (res.status === "already") {
                                         showAlert!(t("already"));
                                         return;
+                                    } else if (res.status === "error") {
+                                        showAlert!(t("unavailable"));
+                                        return;
                                     }
                                     showAlert!(
                                         t("email_sent") + store.email,
@@ -265,8 +276,11 @@ const AuthModal: FC<AuthModalProps> = ({ initState }) => {
                                     });
                                     setIsLoading(false);
 
-                                    if (res.status !== "success") {
+                                    if (res.status === "incorrect") {
                                         showAlert!(t("code_incorrcet"));
+                                        return;
+                                    } else if (res.status === "error") {
+                                        showAlert!(t("unavailable"));
                                         return;
                                     }
                                     showAlert!(t("code_correct"), "success");
@@ -335,8 +349,11 @@ const AuthModal: FC<AuthModalProps> = ({ initState }) => {
                                         email: store.email,
                                     });
                                     setIsLoading(false);
-                                    if (res.status !== "success") {
+                                    if (res.status === "incorrect") {
                                         showAlert!(t("code_incorrcet"));
+                                        return;
+                                    } else if (res.status === "error") {
+                                        showAlert!(t("unavailable"));
                                         return;
                                     }
                                     showAlert!(t("code_correct"), "success");
@@ -376,12 +393,16 @@ const AuthModal: FC<AuthModalProps> = ({ initState }) => {
                                     store.pass !== store.newPass ||
                                     !passCorrect(store.pass)
                                 }
-                                onClick={() => {
+                                onClick={async () => {
                                     setIsLoading(true);
-                                    const res = updatePass({
+                                    const res = await updatePass({
                                         email: store.email,
                                         password: store.pass,
                                     });
+                                    if (res.status === "error") {
+                                        showAlert!(t("unavailable"));
+                                        return;
+                                    }
                                     setIsLoading(false);
                                     setModalState("registered");
                                 }}
@@ -493,6 +514,9 @@ const AuthModal: FC<AuthModalProps> = ({ initState }) => {
                                     if (res.status === "not found") {
                                         showAlert!(t("not_found"));
                                         return;
+                                    } else if (res.status === "error") {
+                                        showAlert!(t("unavailable"));
+                                        return;
                                     }
                                     showAlert!(t("code_correct"), "success");
                                     setModalState("ver_code_forgot");
@@ -531,12 +555,16 @@ const AuthModal: FC<AuthModalProps> = ({ initState }) => {
                                     store.pass !== store.newPass ||
                                     !passCorrect(store.pass)
                                 }
-                                onClick={() => {
+                                onClick={async () => {
                                     setIsLoading(true);
-                                    const res = updatePass({
+                                    const res = await updatePass({
                                         email: store.email,
                                         password: store.pass,
                                     });
+                                    if (res.status === "error") {
+                                        showAlert!(t("unavailable"));
+                                        return;
+                                    }
                                     setIsLoading(false);
                                     setModalState("pass_changed");
                                 }}

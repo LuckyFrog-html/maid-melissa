@@ -8,35 +8,52 @@ export const signUp = async (data: {
     lastname: string;
     date_of_birth: Date;
     phone: string;
-}) => {
+}): Promise<{ status: "error" | "success" | "already" }> => {
     try {
         const res = await $host.post("/auth/signup", data);
         return { ...res.data, status: "success" };
     } catch (error) {
+        if (axios.isAxiosError(error)) {
+            if (error.code === "ERR_NETWORK") {
+                return { status: "error" };
+            }
+        }
         return { status: "already" };
     }
 };
 
-export const verifyCode = async (data: { email: string; code: string }) => {
+export const verifyCode = async (data: {
+    email: string;
+    code: string;
+}): Promise<{ status: "error" | "success" | "not found" | "incorrect" }> => {
     try {
         const res = await $host.post("/auth/verify", data);
-        return { ...res.data, status: "success" };
+        return { status: "success" };
     } catch (error) {
         if (axios.isAxiosError(error)) {
-            if (error.response?.status === 404) {
+            if (error.code === "ERR_NETWORK") {
+                return { status: "error" };
+            } else if (error.response?.status === 404) {
                 return { status: "not found" };
-            } else if (error.response?.status === 400) {
-                return { status: "code is incorrect" };
             }
         }
+        return { status: "incorrect" };
     }
 };
 
-export const updatePass = async (data: { email: string; password: string }) => {
+export const updatePass = async (data: {
+    email: string;
+    password: string;
+}): Promise<{ status: "error" | "success" }> => {
     try {
         const res = await $host.post("/auth/update_pass", data);
-        return { ...res.data, status: "success" };
+        return { status: "success" };
     } catch (error) {
+        if (axios.isAxiosError(error)) {
+            if (error.code === "ERR_NETWORK") {
+                return { status: "error" };
+            }
+        }
         return { status: "error" };
     }
 };
@@ -58,32 +75,35 @@ export const signIn = async (data: {
         firstname: string;
         lastname: string;
     };
-    status: string;
+    status: "success" | "error" | "not exist";
 }> => {
     try {
         const res = await $host.post("/auth/signin", data);
         return { ...res.data, status: "success" };
     } catch (error) {
-        return { status: "user does not exist" };
+        if (axios.isAxiosError(error)) {
+            if (error.code === "ERR_NETWORK") {
+                return { status: "error" };
+            }
+        }
+        return { status: "not exist" };
     }
 };
 
-export const auth = async (): Promise<User> => {
+export const auth = async (): Promise<{ user: User; status: string }> => {
     try {
         const { data } = await $authHost.get("/auth");
-        return data;
+        return { user: data, status: "success" };
     } catch (e) {
-        console.log(e);
-        return {} as User;
+        return { user: {} as User, status: "error" };
     }
 };
 
 export const logout = async () => {
     try {
         const { data } = await $authHost.get("/auth/logout");
-        return data;
+        return { status: "success" };
     } catch (e) {
-        console.log(e);
-        return {} as User;
+        return { status: "error" };
     }
-}
+};

@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import { useEffect, useContext } from "react";
+import { useEffect } from "react";
 import styles from "./Index.module.scss";
 import classNames from "classnames";
 import Benefits from "@/components/Benefits/Benefits";
@@ -13,26 +13,26 @@ import Filters from "@/components/Filters/Filters";
 import Schedule from "@/components/Schedule/Schedule";
 import Anwsers from "@/components/Anwsers/Anwsers";
 import Contacts from "@/components/Contacts/Contacts";
-import { getFreeHours, getUserOrders } from "@/http/API/hoursAPI";
+import { getUserOrders } from "@/http/API/hoursAPI";
 import { useHoursStore } from "@/store/hoursStore";
 import { useUserStore } from "@/store/userStore";
 import { getLocalAccessToken } from "@/utils/localStorage";
-import { Hour, User } from "@/types/models";
 import { auth } from "@/http/API/usersAPI";
 import { useContentStore } from "@/store/contentStore";
 
-export default function Index({
-    hours,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Index({}: InferGetServerSidePropsType<
+    typeof getServerSideProps
+>) {
     const { t } = useTranslation("common");
 
-    const { setHours, addHour } = useHoursStore();
+    const { addHour } = useHoursStore();
     const { setUser, isAuth } = useUserStore();
     const { setIsMobile } = useContentStore();
 
+
     useEffect(() => {
         setIsMobile(window.innerWidth <= 768);
-        
+
         const resize = () => {
             setIsMobile(window.innerWidth <= 768);
         };
@@ -45,18 +45,16 @@ export default function Index({
     }, []);
 
     useEffect(() => {
-        setHours(hours);
-
         const authUser = async () => {
             if (getLocalAccessToken()) {
-                const candidate: User = await auth();
+                const { user } = await auth();
 
-                if (candidate.id) {
+                if (user.id) {
                     const userOrders = await getUserOrders();
-                    userOrders?.forEach((i) => {
+                    userOrders.hours.forEach((i) => {
                         addHour(i);
                     });
-                    setUser(candidate);
+                    setUser(user);
                 }
             }
         };
@@ -90,16 +88,11 @@ export default function Index({
     );
 }
 
-export const getServerSideProps: GetServerSideProps<{
-    hours: Hour[];
-    _nextI18Next?: any;
-}> = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
     const { locale } = context;
-    const data = await getFreeHours();
 
     return {
         props: {
-            hours: data!,
             ...(await serverSideTranslations(locale!, [
                 "common",
                 "seo",

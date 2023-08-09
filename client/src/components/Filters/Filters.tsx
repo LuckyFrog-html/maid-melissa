@@ -11,10 +11,16 @@ import {
     FrequencyType,
     useFilterStore,
 } from "@/store/filterStore";
+import { useHoursStore } from "@/store/hoursStore";
+import { getFreeHours } from "@/http/API/hoursAPI";
+import { AlertContext } from "@/context/AlertContext";
 
 const Filters = () => {
-    const { t } = useTranslation(["filters", "common", "seo"]);
+    const { t } = useTranslation(["filters", "common", "seo", "auth"]);
     const [tempAddress, setTempAddress] = useState<string>("");
+
+    const { setHours } = useHoursStore();
+    const { showAlert } = useContext(AlertContext);
 
     const {
         address,
@@ -26,6 +32,16 @@ const Filters = () => {
         setCleaning,
         setFrequency,
     } = useFilterStore();
+
+    const handleApply = async () => {
+        setAddress(tempAddress);
+        const { hours, status } = await getFreeHours();
+        if (status === "error") {
+            showAlert!(t("unavailable", { ns: "auth" }));
+            return
+        }
+        setHours(hours);
+    };
 
     return (
         <div id="filter" className={styles.container}>
@@ -43,11 +59,7 @@ const Filters = () => {
                         setValue={(val) => setTempAddress(val)}
                     />
                     <div className={styles.button}>
-                        <Button
-                            onClick={() => {
-                                setAddress(tempAddress);
-                            }}
-                        >
+                        <Button onClick={() => handleApply()}>
                             {t("apply_btn", { ns: "common" })}
                         </Button>
                     </div>
