@@ -18,6 +18,7 @@ import { AlertContext } from "@/context/AlertContext";
 const Filters = () => {
     const { t } = useTranslation(["filters", "common", "seo", "auth"]);
     const [tempAddress, setTempAddress] = useState<string>("");
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const { setHours } = useHoursStore();
     const { showAlert } = useContext(AlertContext);
@@ -35,11 +36,14 @@ const Filters = () => {
 
     const handleApply = async () => {
         setAddress(tempAddress);
+        setIsLoading(true);
         const { hours, status } = await getFreeHours();
+        setIsLoading(false);
         if (status === "error") {
             showAlert!(t("unavailable", { ns: "auth" }));
-            return
+            return;
         }
+        showAlert!(t("found"), "success");
         setHours(hours);
     };
 
@@ -59,7 +63,10 @@ const Filters = () => {
                         setValue={(val) => setTempAddress(val)}
                     />
                     <div className={styles.button}>
-                        <Button onClick={() => handleApply()}>
+                        <Button
+                            loading={isLoading}
+                            onClick={() => handleApply()}
+                        >
                             {t("apply_btn", { ns: "common" })}
                         </Button>
                     </div>
